@@ -1,0 +1,15 @@
+{
+  "name": "ngs-harco/participant-anniversary",
+  "description": "Participant anniversary plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "require": {
+    "shopware/core": "^6.5",
+    "endroid/qr-code": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "NgsHarco\\ParticipantAnniversary\\": "src/"
+    }
+  }
+}

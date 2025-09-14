@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="NgsHarco\ParticipantAnniversary\Service\ConfigService">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="NgsHarco\ParticipantAnniversary\Service\LoginLinkService" />
+        <service id="NgsHarco\ParticipantAnniversary\Service\QrCodeService" />
+
+        <service id="NgsHarco\ParticipantAnniversary\Service\AnniversaryService">
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Core\Content\Participant\ParticipantDefinition.repository" />
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Core\Content\ParticipantAnniversaryLog\AnniversaryLogDefinition.repository" />
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Service\ConfigService" />
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Service\LoginLinkService" />
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Service\QrCodeService" />
+            <argument type="service" id="event_dispatcher" />
+        </service>
+
+        <service id="NgsHarco\ParticipantAnniversary\Command\CheckAnniversariesCommand">
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Service\AnniversaryService" />
+            <tag name="console.command" />
+        </service>
+
+        <service id="NgsHarco\ParticipantAnniversary\Event\Storer\ParticipantWorkAnniversaryStorer">
+            <tag name="shopware.flow.event_storer" />
+        </service>
+
+        <service id="NgsHarco\ParticipantAnniversary\Controller\Storefront\AccessController" public="true">
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Core\Content\ParticipantAnniversaryLog\AnniversaryLogDefinition.repository" />
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Service\ConfigService" />
+            <tag name="controller.service_arguments" />
+            <tag name="shopware.storefront.controller" />
+        </service>
+        <service id="NgsHarco\ParticipantAnniversary\Controller\Admin\ParticipantImportController" public="true">
+            <argument type="service" id="NgsHarco\ParticipantAnniversary\Core\Content\Participant\ParticipantDefinition.repository" />
+            <tag name="controller.service_arguments" />
+            <tag name="shopware.controller" />
+        </service>
+    </services>
+</container>
