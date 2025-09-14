@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://shopware.github.io/schemas/system-config/1.0/system-config.xsd">
+    <card>
+        <title>Levels</title>
+        <label>Level mapping</label>
+        <input-field>
+            <name>levelMappings</name>
+            <label>Level mappings (JSON)</label>
+            <type>text</type>
+            <component>sw-textarea-field</component>
+        </input-field>
+    </card>
+    <card>
+        <title>Settings</title>
+        <input-field>
+            <name>tokenTtlDays</name>
+            <label>Token TTL (days)</label>
+            <type>int</type>
+            <defaultValue>7</defaultValue>
+        </input-field>
+        <input-field>
+            <name>fallbackCategoryId</name>
+            <label>Fallback category</label>
+            <type>text</type>
+            <component>sw-entity-single-select</component>
+            <config>
+                <entity>category</entity>
+            </config>
+        </input-field>
+        <input-field>
+            <name>generateQrCode</name>
+            <label>Generate QR Code</label>
+            <type>bool</type>
+        </input-field>
+        <input-field>
+            <name>qrSize</name>
+            <label>QR Code size</label>
+            <type>int</type>
+            <defaultValue>256</defaultValue>
+        </input-field>
+    </card>
+</config>

@@ -1,0 +1,9 @@
+{% block ngs_harco_participants_import %}
+<div>
+    <input type="file" @change="onChangeFile" />
+    <sw-button @click="onUpload">Upload</sw-button>
+    <div v-if="result">
+        <pre>{{ result }}</pre>
+    </div>
+</div>
+{% endblock %}
